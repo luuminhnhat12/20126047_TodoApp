@@ -17,8 +17,9 @@ class TitleToday extends StatelessWidget {
         style: const TextStyle(
           fontSize: 26,
           color: Color.fromARGB(255, 9, 121, 219),
-          fontWeight: FontWeight.bold),
+          fontWeight: FontWeight.bold
         ),
-      );
-    }
+      ),
+    );
+  }
 }
