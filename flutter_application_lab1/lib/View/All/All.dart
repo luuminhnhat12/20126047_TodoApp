@@ -84,11 +84,11 @@ class _AllState extends State<All> {
                         margin: const EdgeInsets.only(bottom: 12.0),
                         decoration: const BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(10),
-                          topRight: Radius.circular(10),
-                          bottomLeft: Radius.circular(10),
-                          bottomRight: Radius.circular(10)
+                            borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10)
                           ),
                           boxShadow: [
                             BoxShadow(
@@ -136,14 +136,15 @@ class _AllState extends State<All> {
                               padding: const EdgeInsets.all(0),
                               height: 35,
                               width: 35,
-                            child: IconButton(
-                              iconSize: 24,
-                              color: Colors.red,
-                              icon: const Icon(Icons.delete),
-                              onPressed: () {
-                                setState(() {
-                                widget.list.delete(item.name);
-                              });
+                              child: IconButton(
+                                iconSize: 24,
+                                color: Colors.red,
+                                icon: const Icon(Icons.delete),
+                                onPressed: () {
+                                  setState(() {
+                                  widget.list.delete(item.name);
+                                }
+                              );
                              },
                             ),
                           ),
