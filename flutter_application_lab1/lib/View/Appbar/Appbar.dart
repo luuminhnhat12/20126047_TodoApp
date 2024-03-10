@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../model/model.dart';
-import '../Today/Today.dart';
-import '../Upcoming/Upcoming.dart';
+import '../Today/today.dart';
+import '../Upcoming/upcoming.dart';
 import '../All/all.dart';
 class Appbar extends StatefulWidget {
   const Appbar({
