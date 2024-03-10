@@ -9,7 +9,6 @@ class Home extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    // print("rebuild");
     return Appbar(list: list);
   }
 }

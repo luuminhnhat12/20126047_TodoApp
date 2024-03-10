@@ -38,7 +38,6 @@ class _AllState extends State<All> {
   }
   @override
   Widget build(BuildContext context) {
-  
     return Container(
       margin: const EdgeInsets.only(top: 15.0),
       padding:const EdgeInsets.all(8.0),
