@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../model/model.dart';
 import '../Today/Today.dart';
 import '../Upcoming/Upcoming.dart';
-import '../All/All.dart';
+import '../All/all.dart';
 class Appbar extends StatefulWidget {
   const Appbar({
     super.key,
@@ -70,93 +70,89 @@ class _AppbarState extends State<Appbar> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            showDialog(context: context,builder: (context){
-              DateTime selectedDate = DateTime.now();
-              String name = '';
-
-              Future<void> pickDateTime(BuildContext context) async {
-               DateTime? pickedDateTime = await showDatePicker(
-               context: context,
-               initialDate: selectedDate,
-               firstDate: DateTime(2000),
-               lastDate: DateTime(2030),
-              );
-
-              if (pickedDateTime != null) {
-                TimeOfDay? pickedTime = await showTimePicker(
-                context: context,
-                initialTime: TimeOfDay(hour: selectedDate.hour, minute: selectedDate.minute),
+            onPressed: (){
+              showDialog(context: context,builder: (context){
+                DateTime selectedDate = DateTime.now();
+                String name = '';
+                Future<void> pickDateTime(BuildContext context) async {
+                DateTime? pickedDateTime = await showDatePicker(
+                  context: context,
+                  initialDate: selectedDate,
+                  firstDate: DateTime(2000),
+                  lastDate: DateTime(2030),
                 );
-
-              if (pickedTime != null) {
-              setState(() {
-                selectedDate = DateTime(
-                pickedDateTime.year,
-                pickedDateTime.month,
-                pickedDateTime.day,
-                pickedTime.hour,
-                pickedTime.minute,
-                    );
-                  }
-               );
-              } 
-             }
-            }
-            return AlertDialog(
-              title: const Text("New Todo"),
-      actions: <Widget>[
-        TextButton(
-          onPressed: () => Navigator.pop(context, 'Cancel'),
-          child: const Text('Cancel', style: TextStyle(fontSize: 17)),
-        ),
-        TextButton(
-          onPressed: () {
-            setState(
-              (){
-                widget.list.AddNewTodo(Todo(name: name,isCompleted: false ,TaskDate: selectedDate));
+                if (pickedDateTime != null) {
+                  TimeOfDay? pickedTime = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay(hour: selectedDate.hour, minute: selectedDate.minute),
+                  );
+                  if (pickedTime != null) {
+                    setState(() {
+                        selectedDate = DateTime(
+                        pickedDateTime.year,
+                        pickedDateTime.month,
+                        pickedDateTime.day,
+                        pickedTime.hour,
+                        pickedTime.minute,
+                      );
+                    }
+                  );
+                } 
               }
-            );
-  
-            Navigator.pop(context,'Add');
-          },
-          child: const Text('Add', style: TextStyle(fontSize: 17)),
-        ),
-      ],
-      content: Container(
-        height: 280,
-        child: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.only(bottom: 15.0),
-              child: TextField(
-                onChanged: (text) {
-                  setState(() {
-                    name = text;
-                  });
-                },
-                decoration: const InputDecoration(
-                  hintText: "Name",
-                  border: OutlineInputBorder(),
+              }
+              return AlertDialog(
+                title: const Text("New Todo"),
+                  actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, 'Cancel'),
+                    child: const Text('Cancel', style: TextStyle(fontSize: 17)),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                    setState(
+                      (){
+                        widget.list.AddNewTodo(Todo(name: name,isCompleted: false ,TaskDate: selectedDate));
+                      }
+                      );
+                      Navigator.pop(context,'Add');
+                    },
+                    child: const Text('Add', style: TextStyle(fontSize: 17)),
+                  ),
+                ],
+                content: Container(
+                  height: 280,
+                  child: Column(
+                    children: [
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 15.0),
+                      child: TextField(
+                        onChanged: (text) {
+                          setState(() {
+                            name = text;
+                          });
+                        },
+                        decoration: const InputDecoration(
+                          hintText: "Name",
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.only(bottom: 15.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                        pickDateTime(context);
+                      },
+                      child: Text(
+                        '${selectedDate.day} / ${selectedDate.month} / ${selectedDate.year} ${selectedDate.hour} : ${selectedDate.minute}',
+                        style: const TextStyle(fontSize: 22.0),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(bottom: 15.0),
-              child: ElevatedButton(
-                onPressed: () {
-                  pickDateTime(context);
-                },
-                child: Text(
-                  '${selectedDate.day} / ${selectedDate.month} / ${selectedDate.year} ${selectedDate.hour} : ${selectedDate.minute}',
-                  style: const TextStyle(fontSize: 22.0),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-            );
+              );
             }
           );
           },
@@ -166,8 +162,7 @@ class _AppbarState extends State<Appbar> {
             size: 29.0,
             color: Colors.white,
           ),
-          ),
-    
+        ),
       ),
     );
   }

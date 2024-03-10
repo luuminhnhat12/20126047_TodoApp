@@ -19,6 +19,6 @@ class TitleToday extends StatelessWidget {
           color: Color.fromARGB(255, 9, 121, 219),
           fontWeight: FontWeight.bold),
         ),
-    );
-  }
+      );
+    }
 }
