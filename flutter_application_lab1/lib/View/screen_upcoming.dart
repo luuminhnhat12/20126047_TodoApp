@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../../model/model.dart';
-class Upcoming extends StatefulWidget {
+import 'package:flutter_application_lab1/model/model.dart';
+class ScreenUpcoming extends StatefulWidget {
   final ListTodo list;
 
-  const Upcoming({
+  const ScreenUpcoming({
     Key? key,
     required this.list,
   }) : super(key: key);
 
   @override
-  State<Upcoming> createState() => _UpcomingState();
+  State<ScreenUpcoming> createState() => _ScreenUpcomingState();
 }
 
-class _UpcomingState extends State<Upcoming> {
+class _ScreenUpcomingState extends State<ScreenUpcoming> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,9 +25,9 @@ class _UpcomingState extends State<Upcoming> {
             child: Container(
               margin: const EdgeInsets.all(10),
               child: ListView.builder(
-                itemCount: widget.list.Getlength(),
+                itemCount: widget.list.getlength(),
                 itemBuilder: (context, index) {
-                  Todo item = widget.list.GetItemAtIndex(index);
+                  Todo item = widget.list.getItemAtIndex(index);
                   bool isTaskDateUpcoming = item.TaskDate.isAfter(DateTime.now());
                   if (isTaskDateUpcoming){
                     return Container(

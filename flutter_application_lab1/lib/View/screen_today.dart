@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import '../../model/model.dart';
-import 'title_today.dart';
-class Today extends StatefulWidget {
+import '../model/model.dart';
+
+class ScreenToday extends StatefulWidget {
   final ListTodo list;
-  const Today({
+  const ScreenToday({
     super.key,
      required this.list,
   });
 
   @override
-  State<Today> createState() => _TodayState();
+  State<ScreenToday> createState() => _ScreenTodayState();
 }
 
-class _TodayState extends State<Today> {
+class _ScreenTodayState extends State<ScreenToday> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,15 +20,29 @@ class _TodayState extends State<Today> {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
-              const TitleToday(),
+              Container(
+                alignment:AlignmentDirectional.topStart,
+                margin: const EdgeInsets.only(
+                  top: 10,
+                  bottom: 17,
+                  left: 12
+                ),
+                child: Text('Today:${DateTime.now().day}-${DateTime.now().month}-${DateTime.now().year}',
+                    style: const TextStyle(
+                    fontSize: 26,
+                    color: Color.fromARGB(255, 9, 121, 219),
+                   fontWeight: FontWeight.bold
+                  ),
+                ),
+              ),
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.all(10),
                   child: 
                     ListView.builder(
-                      itemCount: widget.list.Getlength(),
+                      itemCount: widget.list.getlength(),
                       itemBuilder:(context, index) {
-                        Todo item = widget.list.GetItemAtIndex(index);
+                        Todo item = widget.list.getItemAtIndex(index);
                         DateTime now = DateTime.now();
                         if (item.TaskDate.year == now.year && item.TaskDate.month == now.month && 
                                item.TaskDate.day == now.day){

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './View/Home/home.dart';
+import 'View/Appbar/screen_home.dart';
 import './model/model.dart';
 
 
@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
     list.initlist();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home(list: list,),
+      home: ScreenHome(list: list,),
     );
   }
 }

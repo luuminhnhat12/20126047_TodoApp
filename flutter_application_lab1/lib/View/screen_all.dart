@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import './title_all_todo.dart';
-import '../../model/model.dart';
+import 'package:flutter_application_lab1/model/model.dart';
 
-class All extends StatefulWidget {
+class ScreenAll extends StatefulWidget {
   final ListTodo list;
   
-  const All({
+  const ScreenAll({
     super.key,
     required this.list,
 
   });
 
   @override
-  State<All> createState() => _AllState();
+  State<ScreenAll> createState() => _ScreenAllState();
 }
 
-class _AllState extends State<All> {
+class _ScreenAllState extends State<ScreenAll> {
   List<Todo> foundToDo = [];
 
   @override
@@ -70,7 +69,20 @@ class _AllState extends State<All> {
             ),
 
           ),
-          const Title_AllTodo(),
+          Container(
+            alignment:AlignmentDirectional.topStart,
+            margin: const EdgeInsets.only(
+              top: 10,
+              bottom: 17,
+              left: 12
+            ),
+            child: const Text("All ToDos",
+                style: TextStyle(
+                  fontSize: 30,
+                  color: Color.fromARGB(255, 4, 100, 132),
+                  fontWeight: FontWeight.bold),
+              ),
+            ),
           Expanded(
             child: Container(
               margin: const EdgeInsets.all(10),

@@ -8,9 +8,9 @@ environment:
 
 dependencies:
   confirm_dialog: ^1.0.3
-  flutter_local_notifications: ^13.0.0
   flutter:
     sdk: flutter
+  quickalert: ^1.1.0
     
 
 dev_dependencies:

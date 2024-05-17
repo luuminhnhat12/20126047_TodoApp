@@ -29,9 +29,12 @@ class ListTodo {
     listtodo.add(Todo(name: "Learn DSA",isCompleted: false ,TaskDate: DateTime(2025,7,6,12,45)));
     listtodo.add(Todo(name: "Learn KSA",isCompleted: false ,TaskDate: DateTime(2025,6,7,12,45)));
     listtodo.add(Todo(name: "Learn TAA", isCompleted: false,TaskDate: DateTime(2024,2,8,12,45)));
-
+    listtodo.add(Todo(name: "Learn TAA", isCompleted: false,TaskDate: DateTime(2024,2,8,12,45)));
+    listtodo.add(Todo(name: "Learn TAA", isCompleted: false,TaskDate: DateTime(2024,5,17,12,45)));
+    listtodo.sort((a, b) => a.TaskDate.compareTo(b.TaskDate));
   }
-  void AddNewTodo(Todo a){
+
+  void addNewTodo(Todo a){
     listtodo.add(a);
   }
   
@@ -42,7 +45,7 @@ class ListTodo {
   List<Todo> searchTodo(String taskName) {
     return listtodo.where((element) => element.name.contains(taskName)).toList();
   }
-  Todo GetItemAtIndex(int i){
+  Todo getItemAtIndex(int i){
     return listtodo.elementAt(i);
   }
   
@@ -51,14 +54,14 @@ class ListTodo {
       print(i);
     }
   }
-  void Setter(ListTodo a){
+  void setter(ListTodo a){
     listtodo = a.listtodo;
   }
-  int Getlength(){
+  int getlength(){
     return listtodo.length;
   }
-  List<Todo> GetList(){
-    return this.listtodo;
+  List<Todo> getList(){
+    return listtodo;
   }
 }
 

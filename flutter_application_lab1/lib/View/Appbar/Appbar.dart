@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../model/model.dart';
-import '../Today/today.dart';
-import '../Upcoming/upcoming.dart';
-import '../All/all.dart';
+import 'package:flutter_application_lab1/View/screen_addTodo.dart';
+import 'package:flutter_application_lab1/model/model.dart';
+import 'package:flutter_application_lab1/View/screen_today.dart';
+import 'package:flutter_application_lab1/View/screen_upcoming.dart';
+import 'package:flutter_application_lab1/View/screen_all.dart';
 class Appbar extends StatefulWidget {
   const Appbar({
     super.key,
@@ -64,104 +65,26 @@ class _AppbarState extends State<Appbar> {
         ),
         body: TabBarView(
           children: [
-            All(list: widget.list),
-            Today(list: widget.list,),
-            Upcoming(list:widget.list),
+            ScreenAll(list: widget.list),
+            ScreenToday(list: widget.list,),
+            ScreenUpcoming(list:widget.list),
           ],
         ),
         floatingActionButton: FloatingActionButton(
-            onPressed: (){
-              showDialog(context: context,builder: (context){
-                DateTime selectedDate = DateTime.now();
-                String name = '';
-                Future<void> pickDateTime(BuildContext context) async {
-                DateTime? pickedDateTime = await showDatePicker(
-                  context: context,
-                  initialDate: selectedDate,
-                  firstDate: DateTime(2000),
-                  lastDate: DateTime(2030),
-                );
-                if (pickedDateTime != null) {
-                  TimeOfDay? pickedTime = await showTimePicker(
-                    context: context,
-                    initialTime: TimeOfDay(hour: selectedDate.hour, minute: selectedDate.minute),
-                  );
-                  if (pickedTime != null) {
-                    setState(() {
-                        selectedDate = DateTime(
-                        pickedDateTime.year,
-                        pickedDateTime.month,
-                        pickedDateTime.day,
-                        pickedTime.hour,
-                        pickedTime.minute,
-                      );
-                    }
-                  );
-                } 
-              }
-              }
-              return AlertDialog(
-                title: const Text("New Todo"),
-                  actions: <Widget>[
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                    child: const Text('Cancel', style: TextStyle(fontSize: 17)),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                    setState(
-                      (){
-                        widget.list.AddNewTodo(Todo(name: name,isCompleted: false ,TaskDate: selectedDate));
-                      }
-                      );
-                      Navigator.pop(context,'Add');
-                    },
-                    child: const Text('Add', style: TextStyle(fontSize: 17)),
-                  ),
-                ],
-                content: Container(
-                  height: 280,
-                  child: Column(
-                    children: [
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 15.0),
-                      child: TextField(
-                        onChanged: (text) {
-                          setState(() {
-                            name = text;
-                          });
-                        },
-                        decoration: const InputDecoration(
-                          hintText: "Name",
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 15.0),
-                      child: ElevatedButton(
-                        onPressed: () {
-                        pickDateTime(context);
-                      },
-                      child: Text(
-                        '${selectedDate.day} / ${selectedDate.month} / ${selectedDate.year} ${selectedDate.hour} : ${selectedDate.minute}',
-                        style: const TextStyle(fontSize: 22.0),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            }
-          );
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ScreenAddTodo(list: widget.list),
+              ),
+            );
           },
           backgroundColor: Colors.cyan,
           child: const Icon(
             Icons.add_circle_rounded,
             size: 29.0,
             color: Colors.white,
-          ),
+          )
         ),
       ),
     );
