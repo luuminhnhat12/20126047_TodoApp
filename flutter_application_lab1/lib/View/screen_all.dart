@@ -20,6 +20,7 @@ class _ScreenAllState extends State<ScreenAll> {
   @override
   void initState() {
     foundToDo = widget.list.listtodo;
+    foundToDo.sort((a, b) => a.TaskDate.compareTo(b.TaskDate));
     super.initState();
   }
 
