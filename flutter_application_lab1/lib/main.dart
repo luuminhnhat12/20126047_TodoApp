@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'View/Appbar/screen_home.dart';
-import './model/model.dart';
+import 'package:flutter_application_lab1/TodoList/todolist_page.dart';
+
 
 
 void main() {
@@ -11,11 +11,10 @@ class MainApp extends StatelessWidget {
   const MainApp({Key? key}) : super(key: key);
    @override
   Widget build(BuildContext context) {
-    ListTodo list = ListTodo();
-    list.initlist();
+   
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ScreenHome(list: list,),
+      home: TodoListPage(),
     );
   }
 }

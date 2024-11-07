@@ -1,17 +1,22 @@
+/*
+  TODOLIST VIEW: RESPONSIBLE FOR DISPLAYING THE TODOLIST VALUE
+  use BlocBuilder to listen to the state changes and update the UI
+*/
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_lab1/View/screen_all.dart';
+import 'package:flutter_application_lab1/TodoList/todolist_cubit.dart';
 import 'package:flutter_application_lab1/model/model.dart';
 import 'package:quickalert/quickalert.dart';
 
-class ScreenAddTodo extends StatefulWidget {
-  final ListTodo list;
-  const ScreenAddTodo({super.key,required this.list});
+class AddNewTodoView extends StatefulWidget {
+
+  const AddNewTodoView({super.key});
 
   @override
-  State<ScreenAddTodo> createState() => _ScreenAddTodoState();
+  State<AddNewTodoView> createState() => _AddNewTodoViewState();
 }
 
-class _ScreenAddTodoState extends State<ScreenAddTodo> {
+class _AddNewTodoViewState extends State<AddNewTodoView> {
   DateTime selectedDate = DateTime.now();
   String name = '';
   Future<void> pickDateTime(BuildContext context) async {
@@ -132,9 +137,13 @@ class _ScreenAddTodoState extends State<ScreenAddTodo> {
                   ),
                   onPressed:name.isEmpty ? null : () {
                     Navigator.pop(context,"added");
-                    setState(() {
-                      widget.list.addNewTodo(Todo(name: name,isCompleted: false ,TaskDate: selectedDate));
-                    });
+                    context.read<ListTodoCubit>().addNewTodo(
+                      Todo(
+                        name: name,
+                        TaskDate: selectedDate,
+                        isCompleted: false,
+                      ),
+                    );   
                     QuickAlert.show(
                       context: context,
                       title: "Success",
